@@ -16,7 +16,7 @@ dim = scalar.ndim
 print(dim)
 
 
-# to remove the type tensor and jjst represent it as a normal integer we use this 
+# to remove the type tensor and just represent it as a normal integer we use this 
 # item = scalar.item()
 
 print(scalar.item())
@@ -112,7 +112,7 @@ print(zeroes)
 
 float_32_tensor  =  torch.tensor ([1.23,43.34,52], dtype=None, #what datatype is the tensor (eg float32, float 16 , int )
                                   device=None, # default is the cpu but you can change it to gpu cuda in future 
-                                  requires_grad=False # whether or not to track gradients with tensors opereations this tensor 
+                                  requires_grad=False # whether or not to track gradients with tensors operations this tensor 
                                   )
 
 print(float_32_tensor.dtype)
@@ -128,7 +128,7 @@ print(float_16_tensor.dtype)
  # Getting information from tensor 
 
  # Tensors not right datatype :-  we can use the tensor.dtype
-# tensors not right shape :- to get the shape we can us eth tensor.shape or size
+# tensors not right shape :- to get the shape we can us the tensor.shape or size
 # tensor not on right device (cpu , gpu):- to get the device from the tensor we can use the tensor.device method 
 
 
@@ -187,17 +187,18 @@ print(torch.matmul(tencor, tensor2))
 # one of the most common wrror in deep learning is shape errors
 # to avoid this we can use the shape method to check the shape of the tensor
 
-# we can then cahnge the shaoe of the tensor by using the tensor.T method
-# the tensor.T method return acopy of the tensor and does not change the original tensor
+# we can then change the shape of the tensor by using the tensor.T method tensor.t() = transpose the matrix
+# the tensor.T method return a copy of the tensor and does not change the original tensor
 
 
 # Tensor Aggregation (min,max,mean,sum,etc)
 
-tensor3 = torch.arange(1,11 , dtype=torch.float32) # here i entered the dtype beacuse some aggregation methods cannot work with int64 dtype  it will show the error got Long instead.
-# the aggregation works with float32 dtype that why i have specified the dtype here as float32
+tensor3 = torch.arange(1,11 , dtype=torch.float32) # here i entered the dtype beacuse some aggregation methods cannot work 
+# with int64 dtype it will show the error got Long instead.
+# the aggregation works with float32 dtype thats why i have specified the dtype here as float32
 
 print(tensor3)
-
+print("Aggreagation methods on the tensors that is min, max, mean, sum, var and std")
 print(tensor3.min())
 print(tensor3.mean()) #cannot work with Long dtype
 print(tensor3.max())
@@ -210,7 +211,7 @@ print(tensor3.std())
 
 print(tensor3)
 
-print("Iusing the argmin and the argmax to get the index of the min and the max")
+print("Using the argmin and the argmax to get the index of the min and the max")
 
 print(tensor3.argmin())
 print(tensor3.argmax())
@@ -218,11 +219,11 @@ print(tensor3.argmax())
 # reshaping, Stacking , sqeezing and unsqeezing tensors
 
 
-# Reshaping - Reshapes the input tensor ti aa defined Shape
+# Reshaping - Reshapes the input tensor to a defined Shape
 # View - returns a view of the tensor as a different shape but keeps th same memory as the original tensor
 #Stacking -Combines multuple Tensors on top of each other (vstack, hstack) vstack - on top of each other. hstack() - side by side 
 # squeezing - removes all the 1 dimension from the tensor
-# un squeezing - adds a 1 dimension to the target tensor
+# unsqueezing - adds a 1 dimension to the target tensor
 
 #permute - returns a view of the input with dimensions permuted (swapped) in a certain way
 
@@ -236,7 +237,8 @@ print(reshaped_tensor)
 print(reshaped_tensor.shape)
 
 
-print("Using the view method noe what view does is so simple it jsut create acopy of the element or tensor and the new element shares the same memory as the original tensor memory")
+print("Using the view method now what view does is so simple it just create a copy of the element or tensor and the new element shares the same memory as the original tensor memory and any changes to the view will affect the original tensor")
+print("")
 
 view_tensor = tensor.view(3,3)
 print(view_tensor)
@@ -308,7 +310,7 @@ print("The original dim of the tensor before permuting is (0,1,2,3)")
 print(tensor6)
 print(tensor6.shape)
 
-print("The dimension will now be cahnged to (3,2,1,0)")
+print("The dimension will now be changed to (3,2,1,0)")
 print(tensor6.permute(3,2,1,0))
 print(f"The Permuted tensor shape :- {tensor6.shape}")
 
@@ -316,13 +318,13 @@ print(f"The Permuted tensor shape :- {tensor6.shape}")
 # Note - permute returns a view of the original tensor so any changes done to the permuted tensor will affect the original tensor
 
 
-# Indexing In pytorch (selcting data from tensor)
+# Indexing In pytorch (selecting data from tensor)
 
 #pytorch tensors & Numpy 
 
-# numpy u s apopular scientifuc python numerical computing library 
-# and beacasue of this pytorch uses the numopy for its installation 
-# data in numpy want in pytorch tensor ->.from_numpy(ndarray)
+# numpy uses a popular scientific python numerical computing library 
+# and because of this pytorch uses the numpy for its installation 
+# data in numpy want in pytorch tensor -> torch.from_numpy(ndarray)
 #pytorch tensor -> numpy -> torch.tensor.numpy()
 
 import numpy as np
@@ -348,14 +350,14 @@ print(array.dtype, tensor.dtype)
 # also remember to keep in mind the dtypes when converting from numpy tp tensor  or vice versa
 
 
-# Repriducibilty (trying to take ranodm ou tof the random)
+# Reproducibility (trying to take random out of the random)
 
 #in short how a neural network 
 
-#starts with random number-. tensor operations ->update random numbers to tyr to make them some reperesentaion fo the data ->again ->again and again -> eventually the random numbers represent the data well
+#starts with random number-. tensor operations ->update random numbers to  make  some reperesentaion for the data ->again ->again and again -> eventually the random numbers represent the data well
 
 # tO REDUCE THE RANDOMNESS IN NEURAL NETWORKSS and pytrorch comes the concept of random seed 
-# Essentially what the random seed does is flaourrs the randomness
+# Essentially what the random seed does is flavurs the randomness
 
 random_tensorA = torch.rand(3,4)
 random_tensorB = torch.rand(3,4)
@@ -380,7 +382,7 @@ print(rand_tensor_D)
 
 print(rand_tensor_C == rand_tensor_D)
 
-# you have to set the manual seed for each time you need to create a tensor as that therandom is used once the seed is set and a tensor is created so remeber to create it everytime yo want to create a ranodm tensor 
+# you have to again initialise the random seed before creating new random tensor to get the same random numbers
 
 # GPU Acceleration with pytorch 
 

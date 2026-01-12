@@ -14,7 +14,7 @@ print(torch.__version__)
 ```python
 scalar = torch.tensor(7)
 print(scalar)          # tensor(7)
-print(scalar.ndim)     # 0 → because no brackets
+print(scalar.ndim)     # 0 → because no brackets and it is 1d 
 print(scalar.item())   # 7 → converts tensor to a normal Python int
 ```
 - **Scalar** = A single number.  
