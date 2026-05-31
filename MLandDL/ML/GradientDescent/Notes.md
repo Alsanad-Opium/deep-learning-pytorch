@@ -1,7 +1,8 @@
 ````md
 # Gradient Descent — In-Depth Notes
 
-### Refer CampusX for codes and explanation .
+### Refer CampusX for codes and explanation.
+
 ## 1) What is Gradient Descent?
 
 Gradient Descent is an **optimization algorithm** used to find the **minimum value of a function**.
@@ -36,16 +37,14 @@ That is gradient descent.
 
 Suppose we want to minimize a function:
 
-\[
-J(\theta)
-\]
+`J(θ)`
 
 where:
 
-- \(J\) = cost / loss function
-- \(\theta\) = model parameters
+- `J` = cost / loss function
+- `θ` = model parameters
 
-In machine learning, \(\theta\) can represent weights and biases.
+In machine learning, `θ` can represent weights and biases.
 
 ---
 
@@ -53,9 +52,7 @@ In machine learning, \(\theta\) can represent weights and biases.
 
 The **gradient** of a function is a vector of partial derivatives:
 
-\[
-\nabla J(\theta) = \left[\frac{\partial J}{\partial \theta_1}, \frac{\partial J}{\partial \theta_2}, \dots, \frac{\partial J}{\partial \theta_n}\right]
-\]
+`∇J(θ) = [ ∂J/∂θ1, ∂J/∂θ2, ..., ∂J/∂θn ]`
 
 The gradient points in the direction of **maximum increase** of the function.
 
@@ -67,15 +64,13 @@ So to reduce the function, we move in the opposite direction.
 
 The general gradient descent update rule is:
 
-\[
-\theta := \theta - \alpha \nabla J(\theta)
-\]
+`θ = θ - α * ∇J(θ)`
 
 where:
 
-- \(\theta\) = parameters
-- \(\alpha\) = learning rate
-- \(\nabla J(\theta)\) = gradient
+- `θ` = parameters
+- `α` = learning rate
+- `∇J(θ)` = gradient
 
 The minus sign means we move **downhill**.
 
@@ -83,7 +78,7 @@ The minus sign means we move **downhill**.
 
 ## 4) Learning Rate
 
-The learning rate \(\alpha\) controls the step size.
+The learning rate `α` controls the step size.
 
 ### Small learning rate
 - Slow convergence
@@ -105,42 +100,31 @@ The learning rate \(\alpha\) controls the step size.
 
 For linear regression, predictions are:
 
-\[
-\hat{y} = wx + b
-\]
+`ŷ = w*x + b`
 
 The mean squared error loss is:
 
-\[
-J(w, b) = \frac{1}{m}\sum_{i=1}^{m}(\hat{y}^{(i)} - y^{(i)})^2
-\]
+`J(w, b) = (1/m) * Σ (ŷi - yi)²`
 
 where:
 
-- \(m\) = number of training examples
-- \(\hat{y}^{(i)}\) = predicted output
-- \(y^{(i)}\) = actual output
+- `m` = number of training examples
+- `ŷi` = predicted output
+- `yi` = actual output
 
 ### Gradients for linear regression
+
 For one feature:
 
-\[
-\frac{\partial J}{\partial w} = \frac{2}{m}\sum_{i=1}^{m}(\hat{y}^{(i)} - y^{(i)})x^{(i)}
-\]
+`∂J/∂w = (2/m) * Σ (ŷi - yi) * xi`
 
-\[
-\frac{\partial J}{\partial b} = \frac{2}{m}\sum_{i=1}^{m}(\hat{y}^{(i)} - y^{(i)})
-\]
+`∂J/∂b = (2/m) * Σ (ŷi - yi)`
 
 Then update:
 
-\[
-w := w - \alpha \frac{\partial J}{\partial w}
-\]
+`w = w - α * ∂J/∂w`
 
-\[
-b := b - \alpha \frac{\partial J}{\partial b}
-\]
+`b = b - α * ∂J/∂b`
 
 ---
 
@@ -148,27 +132,19 @@ b := b - \alpha \frac{\partial J}{\partial b}
 
 For many features:
 
-\[
-\hat{y} = Xw + b
-\]
+`ŷ = Xw + b`
 
 Loss:
 
-\[
-J(w) = \frac{1}{m} (Xw - y)^T(Xw - y)
-\]
+`J(w) = (1/m) * (Xw - y)^T (Xw - y)`
 
 Gradient:
 
-\[
-\nabla_w J(w) = \frac{2}{m}X^T(Xw - y)
-\]
+`∇w J(w) = (2/m) * X^T (Xw - y)`
 
 Update:
 
-\[
-w := w - \alpha \frac{2}{m}X^T(Xw - y)
-\]
+`w = w - α * (2/m) * X^T (Xw - y)`
 
 Vector form is important because it is efficient and used in real ML implementations.
 
@@ -184,9 +160,7 @@ The gradient indicates the steepest ascent.
 
 At the minimum:
 
-\[
-\nabla J(\theta) = 0
-\]
+`∇J(θ) = 0`
 
 This is called a **stationary point**.
 
@@ -210,9 +184,8 @@ Uses the **entire training dataset** to compute the gradient for each update.
 - Perform one parameter update after scanning the full dataset.
 
 #### Formula
-\[
-\theta := \theta - \alpha \frac{1}{m}\sum_{i=1}^{m}\nabla_{\theta}J^{(i)}(\theta)
-\]
+
+`θ = θ - α * (1/m) * Σ ∇Jᵢ(θ)`
 
 #### Advantages
 - Stable and smooth convergence
@@ -240,9 +213,8 @@ Uses **one training example at a time**.
 - Update parameters immediately.
 
 #### Formula
-\[
-\theta := \theta - \alpha \nabla_{\theta}J^{(i)}(\theta)
-\]
+
+`θ = θ - α * ∇Jᵢ(θ)`
 
 #### Advantages
 - Very fast per update
@@ -272,11 +244,10 @@ Uses a **small batch** of samples at a time, such as 16, 32, 64, or 128.
 - Update parameters after each batch.
 
 #### Formula
-\[
-\theta := \theta - \alpha \frac{1}{b}\sum_{i=1}^{b}\nabla_{\theta}J^{(i)}(\theta)
-\]
 
-where \(b\) is the mini-batch size.
+`θ = θ - α * (1/b) * Σ ∇Jᵢ(θ)`
+
+where `b` is the mini-batch size.
 
 #### Advantages
 - Faster than batch GD
@@ -312,23 +283,17 @@ Gradient descent works because of calculus.
 
 For a small change in parameters:
 
-\[
-J(\theta + \Delta \theta) \approx J(\theta) + \nabla J(\theta)^T \Delta \theta
-\]
+`J(θ + Δθ) ≈ J(θ) + ∇J(θ)^T Δθ`
 
 If we choose:
 
-\[
-\Delta \theta = -\alpha \nabla J(\theta)
-\]
+`Δθ = -α * ∇J(θ)`
 
 then:
 
-\[
-J(\theta + \Delta \theta) \approx J(\theta) - \alpha \|\nabla J(\theta)\|^2
-\]
+`J(θ + Δθ) ≈ J(θ) - α * ||∇J(θ)||²`
 
-Since \(\alpha > 0\), the loss decreases.
+Since `α > 0`, the loss decreases.
 
 This is the mathematical reason why moving opposite to the gradient reduces the objective.
 
@@ -415,13 +380,9 @@ Momentum helps accelerate updates in consistent directions and reduce oscillatio
 
 Update idea:
 
-\[
-v_t = \beta v_{t-1} + (1 - \beta)\nabla J(\theta)
-\]
+`v_t = β * v_{t-1} + (1 - β) * ∇J(θ)`
 
-\[
-\theta := \theta - \alpha v_t
-\]
+`θ = θ - α * v_t`
 
 ### 13.4 Adaptive Methods
 Adaptive algorithms change the learning rate automatically.
@@ -521,17 +482,13 @@ Goal: find the best-fit line by minimizing squared error.
 
 Model:
 
-\[
-\hat{y} = wx + b
-\]
+`ŷ = w*x + b`
 
 Loss:
 
-\[
-J(w,b)=\frac{1}{m}\sum_{i=1}^{m}(\hat{y}^{(i)}-y^{(i)})^2
-\]
+`J(w, b) = (1/m) * Σ (ŷi - yi)²`
 
-Gradient descent updates \(w\) and \(b\) until the loss is minimal.
+Gradient descent updates `w` and `b` until the loss is minimal.
 
 This is useful when:
 - the relationship is approximately linear
@@ -544,21 +501,15 @@ This is useful when:
 
 Logistic regression predicts probabilities using the sigmoid function:
 
-\[
-\sigma(z) = \frac{1}{1+e^{-z}}
-\]
+`σ(z) = 1 / (1 + e^(-z))`
 
 where:
 
-\[
-z = w^Tx + b
-\]
+`z = w^T x + b`
 
 The loss is usually binary cross-entropy:
 
-\[
-J(w) = -\frac{1}{m}\sum_{i=1}^{m}\left[y^{(i)}\log(\hat{y}^{(i)}) + (1-y^{(i)})\log(1-\hat{y}^{(i)})\right]
-\]
+`J(w) = -(1/m) * Σ [ yi log(ŷi) + (1 - yi) log(1 - ŷi) ]`
 
 Gradient descent is used to optimize the weights.
 
@@ -603,35 +554,25 @@ This is the foundation of deep learning.
 
 Suppose:
 
-\[
-f(x)=x^2
-\]
+`f(x) = x²`
 
 The derivative is:
 
-\[
-f'(x)=2x
-\]
+`f'(x) = 2x`
 
 Using gradient descent:
 
-\[
-x := x - \alpha(2x)
-\]
+`x = x - α * (2x)`
 
-If \(x = 4\) and \(\alpha = 0.1\):
+If `x = 4` and `α = 0.1`:
 
-\[
-x := 4 - 0.1(8) = 3.2
-\]
+`x = 4 - 0.1 * 8 = 3.2`
 
 Next step:
 
-\[
-x := 3.2 - 0.1(6.4)=2.56
-\]
+`x = 3.2 - 0.1 * 6.4 = 2.56`
 
-Each step moves closer to zero, which is the minimum of \(x^2\).
+Each step moves closer to zero, which is the minimum of `x²`.
 
 ---
 
