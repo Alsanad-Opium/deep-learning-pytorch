@@ -1,0 +1,1 @@
+This project is about making a Spam predictor using LinearSVC a small mini project the model is selcted after the comparision with different models like Logistic regression, SVM, Naive Bayes. LinearSVC performed the Best among them all with a accuracy of 98% on average.
