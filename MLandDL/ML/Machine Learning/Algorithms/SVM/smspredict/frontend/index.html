@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMS Spam Detector</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="banner">
+        <div class="banner-copy">
+          <p class="eyebrow">SMS Spam Detector</p>
+          <h1>Clean spam analysis for your messages</h1>
+          <p>Paste an SMS-style message, then get a crisp prediction whether it is spam or safe.</p>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Check an SMS message</h2>
+            <p>The text is sent only to the local classifier backend and never shared with external AI services.</p>
+          </div>
+
+          <form id="predict-form" class="input-form">
+            <label for="message">Message text</label>
+            <textarea id="message" name="message" rows="6" placeholder="e.g. Free entry in 2 a weekly competition! Text WIN to 890123." required></textarea>
+            <div class="actions">
+              <button type="submit" id="submit-button">Analyze message</button>
+            </div>
+          </form>
+
+          <div id="status" class="status hidden"></div>
+        </section>
+
+        <section class="info-grid">
+          <article>
+            <h3>How it works</h3>
+            <p>The frontend sends JSON with <code>text</code> to <code>/api/predict</code>. The backend returns the classification result.</p>
+          </article>
+          <article>
+            <h3>Why this app</h3>
+            <p>This is a focused SMS spam classifier, not a generic AI chat or content generator.</p>
+          </article>
+          <article>
+            <h3>Ready to use</h3>
+            <p>Run the Flask backend and open this page in your browser. The app is designed to be fast, simple, and readable.</p>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
