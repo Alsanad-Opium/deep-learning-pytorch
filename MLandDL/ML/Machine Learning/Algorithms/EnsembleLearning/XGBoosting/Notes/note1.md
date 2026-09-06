@@ -1,7 +1,3 @@
-Absolutely. Since you’ve already covered **Decision Trees → Bagging → Random Forest → AdaBoost → Gradient Boosting**, XGBoost is the right next step.
-
-I’ll structure this like proper **study notes**, with intuition → mathematics → algorithm → parameters → implementation → tuning → evaluation → practical tips.
-
 # XGBoost — In-Depth Notes
 
 ## 1. What is XGBoost?
