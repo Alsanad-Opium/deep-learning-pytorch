@@ -26,6 +26,65 @@ Where:
 
 **Interpretation**: minimize the total squared distance between every point and the centroid it's assigned to. Lower inertia = tighter, more compact clusters.
 
+The formula for **WCSS (Within-Cluster Sum of Squares)**, which is widely used in the K-Means Clustering machine learning algorithm, is: 
+
+$$\text{WCSS} = \sum_{i=1}^{k} \sum_{x \in C_i} d(x, c_i)^2$$
+
+In standard cases using **Euclidean distance**, the formula expands to: 
+
+$$\text{WCSS} = \sum_{i=1}^{k} \sum_{x \in C_i} \sum_{j=1}^{m} (x_j - c_{ij})^2$$
+
+### Variable Breakdown
+* **$k$**: The total number of clusters.
+* **$C_i$**: The $i$-th cluster.
+* **$x$**: A specific data point belonging to cluster $C_i$.
+* **$c_i$**: The centroid (mean center) of cluster $C_i$.
+* **$d(x, c_i)$**: The standard Euclidean distance between data point $x$ and centroid $c_i$.
+* **$m$**: The number of dimensions (features) in your dataset. 
+
+---
+
+### What does WCSS measure?
+WCSS measures the **compactness of your clusters**. 
+* **High WCSS:** Data points are far away from their assigned cluster centers (loose, poorly defined clusters).
+* **Low WCSS:** Data points are tightly packed around their cluster centers (dense, well-defined clusters). 
+
+### The Elbow Method
+When finding the optimal number of clusters ($k$), you plot WCSS against different values of $k$. As $k$ increases, WCSS naturally drops because clusters get smaller. The ideal choice is the **"elbow point"**, where the rate of WCSS decrease slows down dramatically. 
+
+---
+
+### Step-by-Step Numerical Example
+
+Suppose we have **4 data points** in a 1-dimensional space split into **2 clusters**:
+* **Cluster 1 ($C_1$):** Points $x = 1$ and $x = 2$
+* **Cluster 2 ($C_2$):** Points $x = 8$ and $x = 10$
+
+#### Step 1: Find the Centroid ($c_i$) of each cluster
+The centroid is simply the average (mean) of the points inside that cluster.
+* **Centroid 1 ($c_1$):** $\frac{1 + 2}{2} = \mathbf{1.5}$
+* **Centroid 2 ($c_2$):** $\frac{8 + 10}{2} = \mathbf{9.0}$
+
+#### Step 2: Calculate the Squared Distances for each cluster
+Find how far each point is from its own centroid, square that distance, and add them up.
+
+**For Cluster 1 ($c_1 = 1.5$):**
+* For point $x = 1$: $(1 - 1.5)^2 = (-0.5)^2 = 0.25$
+* For point $x = 2$: $(2 - 1.5)^2 = (0.5)^2 = 0.25$
+* **Sum for Cluster 1** = $0.25 + 0.25 = \mathbf{0.5}$
+
+**For Cluster 2 ($c_2 = 9.0$):**
+* For point $x = 8$: $(8 - 9.0)^2 = (-1.0)^2 = 1.0$
+* For point $x = 10$: $(10 - 9.0)^2 = (1.0)^2 = 1.0$
+* **Sum for Cluster 2** = $1.0 + 1.0 = \mathbf{2.0}$
+
+#### Step 3: Sum everything together to find WCSS
+$$\text{WCSS} = \text{Sum}(C_1) + \text{Sum}(C_2)$$
+$$\text{WCSS} = 0.5 + 2.0 = \mathbf{2.5}$$
+
+The **Within-Cluster Sum of Squares (WCSS)** for this clustering setup is **2.5**.
+
+
 **Important limitation baked into the math**: because it uses squared Euclidean distance, K-Means implicitly assumes:
 - Clusters are **roughly spherical/convex** in shape
 - Clusters are of **similar size and density**
